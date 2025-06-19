@@ -29,7 +29,7 @@ void AMyActor::Tick(float DeltaTime)
 void AMyActor::MoveInTick()
 {
 	FVector CurrentLocation = GetActorLocation();
-	FVector NewLocation = FMath::VInterpTo(CurrentLocation, TargetLocation, GetWorld()->GetDeltaSeconds(), 1.0f);
+	FVector NewLocation = FMath::VInterpTo(CurrentLocation, TargetLocation, GetWorld()->GetDeltaSeconds(), 10.0f);
 	SetActorLocation(NewLocation);
 }
 
@@ -46,9 +46,9 @@ void AMyActor::Move()
 
 FVector AMyActor::Step()
 {
-	auto frontValue = FMath::RandRange(-100.0f, 100.0f);
-	auto rightValue = FMath::RandRange(-100.0f, 100.0f);
-	FVector Offset(frontValue, rightValue, 0.0f);
+	auto frontValue = FMath::RandRange(-1, 1);
+	auto rightValue = FMath::RandRange(-1, 1);
+	FVector Offset(frontValue*100, rightValue*100, 0.0f);
 	FVector ResultLocation = GetActorLocation() + Offset;
 	return ResultLocation;
 }
